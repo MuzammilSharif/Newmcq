@@ -3,12 +3,16 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 //import App from './App';
 import reportWebVitals from './reportWebVitals';
-import McqPage2 from './Components/McqPage2';
+//import McqPage2 from './Components/McqPage2';
+import {BrowserRouter} from 'react-router-dom'
+import McqRouter from './Components/McqRouter';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <McqPage2 />
+    <BrowserRouter>
+    < McqRouter/>
+    </BrowserRouter>
   </React.StrictMode>
 );
 
