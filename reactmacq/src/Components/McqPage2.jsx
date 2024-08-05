@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 
 const McqPage2 = () => {
 
-    const [textvalue,textstate]=useState({
+    var [textvalue,textstate]=useState({
         question:'',
         option1:"",
         option2:"",
@@ -15,7 +15,7 @@ const McqPage2 = () => {
         
     })
 
-    const [arrvalue,arrstate]=useState([])
+    var [arrvalue,arrstate]=useState([])
 
     const handletext=(e)=>{
         const name=e.target.name;
@@ -37,14 +37,18 @@ const McqPage2 = () => {
         const data={textvalue,radiomcq}
         if(textvalue && radiomcq){
             arrstate((item)=>[...item,data])
-            console.log(arrvalue)
-            
+            console.log(arrvalue)     
         }
+    
     }
 
     const navigatesub=useNavigate()
     const handleSubmit=()=>{
         navigatesub("/Preview",{state:{arra:arrvalue}})
+    }
+
+    const handClear=()=>{
+
     }
     
 
@@ -79,13 +83,35 @@ const McqPage2 = () => {
 
 
            <div className='Radiofbut'>
-            <button type='reset'  className='addbut' onClick={handleadd} > ADD</button>
+            <button type='submit' className='addbut' onClick={handleadd} > ADD</button>
             <div>
             <button  type="submit" className='subbut' onClick={handleSubmit}>Submit</button>
+            
+            <button  type="submit" className='clear' onClick={handClear}>Clear</button>
+            
             </div>
             </div>
             
-           
+            <table >
+            <thead className='tablec'>
+                <tr>
+                    <th>NAME</th>
+                    <th>Company</th>
+                    <th>Number</th>
+                </tr>
+            </thead>
+            <tbody>
+                {arrvalue.map((item,i)=>
+                <tr key={i}>
+                    <td>{item.textvalue.question}</td>
+                    <td>{item.option1}</td>
+                    <td>{item.radiomcq}</td>
+                    
+                </tr>
+                )
+                }
+            </tbody>
+        </table>
 
             <img src={cap} className='imagel' />
             <div className='textend'>

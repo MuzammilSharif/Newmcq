@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React from 'react'
 import "./Login.css";
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 
-
-export default function Login() {
+const Login = () => {
     // ----------below all the required states are defined -------------- 
-    const [user, setUser] = useState("@Username");
-    const [pass, setPass] = useState("Password");
+    const [user, setUser] = useState("");
+    const [pass, setPass] = useState("");
     const [bgColor, setBgColor] = useState("Login");
     const navigate = useNavigate();
 
@@ -23,22 +23,13 @@ export default function Login() {
         setPass(e.target.value);
     }
     // ---------------------button handeling --------------------------------------------
-    const handleChangeColor = (e) => {
-        e.preventDefault();
-        if (user === "@Best1234" && pass === "12345") {
-            navigate('/Mcq');
-        }
-        else {
-            alert("Please try again wrong credential");
-        }
-
+    const handleChangeColor = () => {
+        
+            localStorage.setItem("values",true)
+    
     }
-
-
-
-    return (
-
-        <>
+  return (
+    <>
             <nav class="navbar navbar-expand-lg bg-body-tertiary">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">QuizCraft</a>
@@ -71,11 +62,14 @@ export default function Login() {
                         <input type="text" id="username" name="username" value={user} onChange={handleUpUser} /><br />
                         <label htmlFor="password ">Password:</label><br />
                         <input type="text" id="password" name="password" value={pass} onChange={handleUpPass} /><br />
-                        <input type="Login" id="btn" value={bgColor} onClick={handleChangeColor} />
+                        <button  onClick={handleChangeColor}>Login</button>
 
                     </form>
                 </div>
             </div>
         </>
-    );
+  
+  )
 }
+
+export default Login
